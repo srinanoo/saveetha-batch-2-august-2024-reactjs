@@ -252,25 +252,44 @@ function App() {
 
   console.log("App is started...");
 
-  useEffect(() => {
-    console.log("useEffect count is called...");
-    setCount(count+1);
-  }, [timer]);
+  // useEffect(() => {
+  //   console.log("useEffect count is called...");
+  //   setCount(count+1);
+  // }, [timer]);
 
-  useEffect(() => {
-    console.log("useEffect timer is called...");
-    setTimer(timer+1);
-  }, []);
+  // useEffect(() => {
+  //   console.log("useEffect timer is called...");
+  //   setTimer(timer+1);
+  // }, []);
 
   // setCount(count+1);
+
+  const [fact, setFact] = useState("");
+  const fetchData = () => {
+    fetch("https://catfact.ninja/fact")
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data.fact);
+        // if(data && data.fact)
+        //   console.log(data.fact);
+
+        // console.log(data?.fact);
+        setFact(data?.fact);
+      })
+  }
+
+  useEffect(() => {
+    fetchData();
+  },[])
 
   return (
     <>
       <h1>useEffect and APIs</h1>
-      <p>Count: {count}</p>
+      {/* <p>Count: {count}</p>
       <button onClick={() => setCount(count+1)}>Counter</button>
       <p>Timer: {timer}</p>
-      <button onClick={() => setTimer(timer+1)}>Timer</button>
+      <button onClick={() => setTimer(timer+1)}>Timer</button> */}
+      <p>Fact: {fact}</p>
     </>
   )
 }
