@@ -9,9 +9,17 @@
 //   };
 //   let menus = ["Home", "About", "Contact", "Blog"];
 
+import axios from "axios";
 import ChildComp1, { ChildComp1Inner } from "./components/ChildComp1";
 import ChildComp2 from "./components/ChildComp2";
 import React, { useEffect, useRef, useState } from "react";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import BlogPage from "./pages/BlogPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MenuComp from "./components/MenuComp";
+import './App.css'
 
 //   let output = [];
 //   for(let i = 0; i < menus.length; i++) {
@@ -245,51 +253,162 @@ import React, { useEffect, useRef, useState } from "react";
 //   )
 // }
 
+// function App() {
+
+//   // const [count, setCount] = useState(0);
+//   // const [timer, setTimer] = useState(0);
+
+//   console.log("App is started...");
+
+//   // useEffect(() => {
+//   //   console.log("useEffect count is called...");
+//   //   setCount(count+1);
+//   // }, [timer]);
+
+//   // useEffect(() => {
+//   //   console.log("useEffect timer is called...");
+//   //   setTimer(timer+1);
+//   // }, []);
+
+//   // setCount(count+1);
+
+//   const [fact, setFact] = useState("");
+//   const fetchData = () => {
+//     fetch("https://catfact.ninja/fact")
+//       .then(res => res.json())
+//       .then(data => {
+//         // console.log(data.fact);
+//         // if(data && data.fact)
+//         //   console.log(data.fact);
+
+//         // console.log(data?.fact);
+//         setFact(data?.fact);
+//       })
+//   }
+
+//   useEffect(() => {
+//     fetchData();
+//   },[])
+
+//   return (
+//     <>
+//       <h1>useEffect and APIs</h1>
+//       {/* <p>Count: {count}</p>
+//       <button onClick={() => setCount(count+1)}>Counter</button>
+//       <p>Timer: {timer}</p>
+//       <button onClick={() => setTimer(timer+1)}>Timer</button> */}
+//       <p>Fact: {fact}</p>
+//     </>
+//   )
+// }
+
+// function App() {
+
+//   let password = useRef("");
+
+//   const [country, setCountry] = useState("");
+//   const [universitiesList, setUniversitiesList] = useState([]);
+//   const handleSearch = () => {
+//     // fetch(`http://universities.hipolabs.com/search?country=${country}`)
+//     //   .then(res => res.json())
+//     //   .then(finalData => {
+//     //     console.log(finalData);
+//     //     setUniversitiesList(finalData);
+//     //   })
+
+//     // axios.get(`http://universities.hipolabs.com/search?country=${country}`)
+//     //   .then(res => {
+//     //     // console.log(res.data)
+//     //     (universitiesList.toString() !== res.data.toString()) &&setUniversitiesList(res?.data);
+//     //   });
+
+//     // let data = {
+//     //   "id": 1,
+//     //   "name": "Dinesh"
+//     // }
+//     // // fetch('https://domain.com/posts', {
+//     // //   method: 'POST',
+//     // //   body: JSON.stringify(data),
+//     // // }).then(res => console.log(res));
+//     // axios.post('https://domain.com/posts', data);
+
+//     console.log(password.current.value);
+//   }
+
+//   console.log("App is called...");
+//   return (
+//     <>
+//       <h1>Universities List</h1>
+
+//       <input type="text" ref={password} />
+//       <input type="text" onChange={(e) => setCountry(e.target.value)} /><br />
+//       <button onClick={handleSearch}>Search Universities</button>
+
+//       {
+//         universitiesList.length > 0
+//           ?
+//             universitiesList.map((univ, i) => {
+//               return (
+//                 <div key={i}>
+//                   <p>Name: {univ.name}</p>
+//                   <p>Website: {univ.web_pages[0]}</p>
+//                 </div>
+//               )
+//             })
+//           :
+//             <p>No Universities found for Country: {country}</p>
+//       }
+
+//       {/* <ClsComponent /> */}
+//     </>
+//   )
+// }
+
+// class ClsComponent extends React.Component {
+//   constructor() {
+
+//   }
+//   render() {
+//     return (
+//       <>
+//       </>
+//     )
+//   }
+// }
+
 function App() {
-
-  const [count, setCount] = useState(0);
-  const [timer, setTimer] = useState(0);
-
-  console.log("App is started...");
-
-  // useEffect(() => {
-  //   console.log("useEffect count is called...");
-  //   setCount(count+1);
-  // }, [timer]);
-
-  // useEffect(() => {
-  //   console.log("useEffect timer is called...");
-  //   setTimer(timer+1);
-  // }, []);
-
-  // setCount(count+1);
-
-  const [fact, setFact] = useState("");
-  const fetchData = () => {
-    fetch("https://catfact.ninja/fact")
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data.fact);
-        // if(data && data.fact)
-        //   console.log(data.fact);
-
-        // console.log(data?.fact);
-        setFact(data?.fact);
-      })
-  }
-
-  useEffect(() => {
-    fetchData();
-  },[])
-
   return (
     <>
-      <h1>useEffect and APIs</h1>
-      {/* <p>Count: {count}</p>
-      <button onClick={() => setCount(count+1)}>Counter</button>
-      <p>Timer: {timer}</p>
-      <button onClick={() => setTimer(timer+1)}>Timer</button> */}
-      <p>Fact: {fact}</p>
+      {/* {
+        location.pathname === "/"
+        &&
+        <HomePage />
+      }
+      {
+        location.pathname === "/about"
+        &&
+        <AboutPage />
+      }
+      {
+        location.pathname === "/contact"
+        &&
+        <ContactPage />
+      }
+      {
+        location.pathname === "/blog"
+        &&
+        <BlogPage />
+      } */}
+
+      <BrowserRouter basename="/saveetha-batch-2-august-2024-reactjs">
+        <MenuComp />
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/contact" element={<ContactPage />}></Route>
+          <Route path="/blog" element={<BlogPage />}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
